@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Stock Insight Platform | AI-Powered Dashboard</title>
+  <meta name="description" content="An AI-powered stock insight platform providing real-time data, trend predictions, and financial literacy tools for Reliance, TCS, and Infosys." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <!-- Our Stylesheet -->
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <span class="brand-icon">📊</span>
+        <div>
+          <h1 class="brand-title">Smart Stock Insight</h1>
+          <p class="brand-sub">AI-Powered Financial Dashboard</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="select-wrapper">
+          <label for="stockSelect">Select Stock</label>
+          <select id="stockSelect">
+            <option value="RELIANCE.NS">🛢️ Reliance Industries</option>
+            <option value="TCS.NS">💻 TCS</option>
+            <option value="INFY.NS">🌐 Infosys</option>
+          </select>
+        </div>
+        <button id="refreshBtn" class="btn-refresh" title="Refresh Data">
+          <span class="refresh-icon">↺</span> Refresh
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ══════════════ STOCK INFO ══════════════ -->
+    <section class="section" id="stock-section">
+      <div class="stock-card" id="stockCard">
+        <div class="stock-card__left">
+          <div class="company-emoji" id="companyEmoji">🛢️</div>
+          <div>
+            <h2 class="company-name" id="companyName">Loading…</h2>
+            <span class="sector-badge" id="companySector">—</span>
+            <p class="company-desc" id="companyDesc">Fetching company data…</p>
+          </div>
+        </div>
+        <div class="stock-card__right">
+          <p class="price-label">Current Price</p>
+          <p class="price-value" id="currentPrice">₹ —</p>
+          <p class="price-updated" id="updatedAt">—</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ TREND + CHART ══════════════ -->
+    <section class="section two-col">
+
+      <!-- Trend Card -->
+      <div class="card trend-card" id="trendCard">
+        <h3 class="card-title">📡 AI Trend Prediction</h3>
+        <div class="trend-badge-wrap">
+          <span class="trend-badge" id="trendBadge">Analysing…</span>
+        </div>
+        <p class="trend-change" id="trendChange"></p>
+        <div class="trend-history" id="trendHistory"></div>
+        <p class="trend-note">
+          ℹ️ Trend is calculated by comparing the first vs last closing price over the last 5 trading days using a simple AI rule-based engine.
+        </p>
+      </div>
+
+      <!-- Chart Card -->
+      <div class="card chart-card">
+        <h3 class="card-title">📈 5-Day Price History</h3>
+        <div class="chart-wrap">
+          <canvas id="priceChart"></canvas>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════ FINANCIAL LITERACY ══════════════ -->
+    <section class="section">
+      <h2 class="section-title">📚 Financial Literacy Corner</h2>
+      <p class="section-sub">Master the basics of investing — one term at a time.</p>
+
+      <div class="literacy-grid">
+
+        <div class="literacy-card">
+          <div class="literacy-icon">📄</div>
+          <h4 class="literacy-term">Stock</h4>
+          <p class="literacy-def">
+            A stock represents ownership in a company. When you buy a stock, you become a part-owner (shareholder) of that business.
+          </p>
+        </div>
+
+        <div class="literacy-card">
+          <div class="literacy-icon">🔖</div>
+          <h4 class="literacy-term">Share</h4>
+          <p class="literacy-def">
+            A share is a single unit of a stock. A company divides its total ownership into millions of shares that people can buy and sell.
+          </p>
+        </div>
+
+        <div class="literacy-card">
+          <div class="literacy-icon">💰</div>
+          <h4 class="literacy-term">Investment</h4>
+          <p class="literacy-def">
+            Putting your money into assets like stocks, bonds, or real estate with the expectation of earning a profit or income over time.
+          </p>
+        </div>
+
+        <div class="literacy-card">
+          <div class="literacy-icon">📈</div>
+          <h4 class="literacy-term">Profit</h4>
+          <p class="literacy-def">
+            The financial gain earned when the selling price of a stock is higher than the price at which it was purchased.
+          </p>
+        </div>
+
+        <div class="literacy-card">
+          <div class="literacy-icon">⚠️</div>
+          <h4 class="literacy-term">Risk</h4>
+          <p class="literacy-def">
+            The possibility that an investment's actual return will differ from the expected return, including the risk of losing some or all capital.
+          </p>
+        </div>
+
+        <div class="literacy-card">
+          <div class="literacy-icon">💸</div>
+          <h4 class="literacy-term">Dividend</h4>
+          <p class="literacy-def">
+            A portion of a company's profits distributed to its shareholders, usually paid quarterly, as a reward for holding the stock.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>📊 <strong>Smart Stock Insight Platform</strong> — College Project · 2026</p>
+      <p>Built with ❤️ using Python Flask · Chart.js · HTML · CSS · JavaScript</p>
+      <p class="footer-disclaimer">⚠️ This platform is for educational purposes only. Not financial advice.</p>
+    </div>
+  </footer>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <p>Fetching stock data…</p>
+  </div>
+
+  <!-- Our JS -->
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
